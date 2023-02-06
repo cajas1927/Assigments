@@ -1,3 +1,7 @@
+
+Documentation of set comprehension :
+
+Comprehensions in Python provide us with a short and compact way to create new sequences (in case of set it's set comprehension)
 # set comprehension
 # for creating new set
 
@@ -10,7 +14,9 @@ print("New Set using set comprehensions:",Set_comp)
 
 
 
+Documentation of Zip Function :
 
+The zip() function returns a zip object contains a paired iterator, which is an iterator of tuples.In this pair, it basically pairs the first element from two tuples and so on.
 ZIP:
 list1 = [1, 2, 3, 4]
 list2 = ['a', 'b', 'c', 'd']
