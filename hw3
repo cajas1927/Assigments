@@ -1,6 +1,4 @@
-Python 3.8.10 (default, Jun  2 2021, 10:49:15) 
-[GCC 9.4.0] on linux
-Type "help", "copyright", "credits" or "license()" for more information.
+
 >>> # import pandas and numpy
 
 import pandas as pd
@@ -36,5 +34,3 @@ each_Day = np.append(each_Day, cum_series[i]-cum_series[i-1])
 print("Miles each day:")
 
 print(pd.Series(each_Day))
-[DEBUG ON]
->>> 
