@@ -10,13 +10,12 @@ import numpy as np
 
 cum_miles = np.array([55, 120, 150, 210, 287, 300])
 
-# convert it into panda series
+# convert it into pand
 
 cum_series = pd.Series(cum_miles)
 
-# now create another array to store the miles covered each day
+# another array to store the miles covered each day
 
-# the first day mile will be same as the cumulative miles
 
 each_Day = np.array([cum_series[0]])
 
@@ -26,9 +25,10 @@ for i in range(1, len(cum_series)):
 
 # the miles for current day wil be cumulative mile till that day - previous day mile
 
-each_Day = np.append(each_Day, cum_series[i]-cum_series[i-1])
+each_Day = np.append(each_Day, cum_series[i]-cum_series[i-1
 
-# finally convert the new array into series and display it
+                                                        
+#new array into series and display it
 
 print("Miles each day:")
 
