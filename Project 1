@@ -1,0 +1,77 @@
+IS 362 – Project 1
+Assignment
+
+The following is an analysis of the flight delays among Alaska airlines and AW West airlines for travel to Los Angelos, Pheonix, San Diego, San Francisco and Seattle.
+import pandas as pd
+
+#Read information from the csv file into pandas
+airline_data=pd.read_csv("/Users/ccajas/Desktop/IS362 Date Acquisition/IS362 Project 1.csv")
+#Analysis of the first 5 rows to check the validity of the data.
+airline_data.head()
+City	Alaska_On_Time	Alaska_Delay	AM WEST_On_Time	AM WEST_Delay
+0	Los Angelos	497	62	694	117
+1	Pheonix	221	12	4840	415
+2	San Diego	212	20	383	65
+3	San Francisco	503	102	320	129
+4	Seattle	1841	305	201	61
+#I calculated the percent of Alaska Airlines flights that were delayed for each of the 5 destinations
+# The delayed flights divided by the total flights times 100 gives you the percent of total flights delayed.
+# The results of the calculation are set to a new column called "Alaska_Percent_Delay"
+
+airline_data['Total_Alaska_Flights'] = airline_data['Alaska_On_Time'] + airline_data['Alaska_Delay']
+
+airline_data['Alaska_Percent_Delay'] = (airline_data['Alaska_Delay'] / airline_data['Total_Alaska_Flights']) * 100
+
+airline_data['Alaska_Percent_Delay']
+0    11.091234
+1     5.150215
+2     8.620690
+3    16.859504
+4    14.212488
+Name: Alaska_Percent_Delay, dtype: float64
+# The same  proces is followed for finding the  per cent of AM West flights delayed.
+# Set the results of the calculation to a new column called "AM West_Percent_Delayed"
+
+airline_data['Total_AMWest'] = airline_data['AM WEST_Delay'] + airline_data['AM WEST_On_Time']
+
+airline_data['AMWest_Percent_Delay'] = (airline_data['AM WEST_Delay'] / airline_data['Total_AMWest']) * 100
+
+airline_data['AMWest_Percent_Delay']
+0    14.426634
+1     7.897241
+2    14.508929
+3    28.730512
+4    23.282443
+Name: AMWest_Percent_Delay, dtype: float64
+# I can visually compare the delays of the two airlines at each destination
+# It is clear that AM West airline has a greater percent of flights delayed at every destination.
+
+airline_data[['Alaska_Percent_Delay', 'AMWest_Percent_Delay']]
+Alaska_Percent_Delay	AMWest_Percent_Delay
+0	11.091234	14.426634
+1	5.150215	7.897241
+2	8.620690	14.508929
+3	16.859504	28.730512
+4	14.212488	23.282443
+for index, row in airline_data.iterrows():
+    if row["Alaska_Percent_Delay"] > row["AMWest_Percent_Delay"]:
+        airline_data.loc[index, 'Most_Delayed_Airline'] = 'Alaska'
+    else:
+        airline_data.loc[index, 'Most_Delayed_Airline'] = 'AMWest'
+
+airline_data['Most_Delayed_Airline']
+0    AMWest
+1    AMWest
+2    AMWest
+3    AMWest
+4    AMWest
+Name: Most_Delayed_Airline, dtype: object
+airline_data
+City	Alaska_On_Time	Alaska_Delay	AM WEST_On_Time	AM WEST_Delay	Total_Alaska_Flights	Alaska_Percent_Delay	Total_AMWest	AMWest_Percent_Delay	Most_Delayed_Airline
+0	Los Angelos	497	62	694	117	559	11.091234	811	14.426634	AMWest
+1	Pheonix	221	12	4840	415	233	5.150215	5255	7.897241	AMWest
+2	San Diego	212	20	383	65	232	8.620690	448	14.508929	AMWest
+3	San Francisco	503	102	320	129	605	16.859504	449	28.730512	AMWest
+4	Seattle	1841	305	201	61	2146	14.212488	262	23.282443	AMWest
+Conclusion
+Since the number of flights travelled among both airlines was not the same it was helpful to analyze the data based on the percentage of flights that were delayed among both airlines. The results show that AMWest had the greates percentage of delays among the five cities samples for the data set. Since a greter percentage of AWWest flights are delayed it is a reasonable to assume that Alaska airlines would be the more reliable for passengers flying to Los Angelos, Pheonix, San Diego, Sanfrancisco and Seattle.
