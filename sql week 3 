@@ -1,0 +1,28 @@
+Show the total number of flights. 
+ SELECT COUNT(*) FROM flights; 
+ 
+
+2Show the total number of flights by airline (carrier).  
+SELECT carrier, COUNT(*) FROM flights GROUP BY carrier; 
+ 
+
+3how all of the airlines, ordered by number of flights in descending order.  
+
+SELECT carrier, COUNT(*) AS FlightCount FROM flights GROUP BY carrier ORDER BY FlightCount DESC; 
+ 
+
+4Show only the top 5 airlines, by number of flights, ordered by number of flights in descending order.  
+
+SELECT carrier, COUNT(*) AS FlightCount FROM flights GROUP BY carrier ORDER BY FlightCount DESC LIMIT 5; 
+ 
+
+5Show only the top 5 airlines, by number of flights of distance 1,000 miles or greater, ordered by number of flights in descending order.  
+
+SELECT carrier, COUNT(*) AS FlightCount FROM flights WHERE distance >=1000 GROUP BY carrier ORDER BY FlightCount DESC LIMIT 5; 
+ 
+
+6Create a question that (a) uses data from the flights database, and (b) requires aggregation to answer it, and write down both the question, and the query that answers the question.
+Question:
+Create a query that show top 5 airlines, by number of flights in the month of October, ordered by flights number from heights. 
+
+ SELECT carrier, COUNT(*) as FlightCount FROM flights WHERE MONTH = 10 GROUP BY carrier ORDER BY FlightCount DESC LIMIT 5;
